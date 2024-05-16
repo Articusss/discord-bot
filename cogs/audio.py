@@ -152,7 +152,7 @@ class Audio(commands.Cog):
 
         if player:
             await player.pause(not player.paused)
-            await interaction.response.send_message(f"{"Paused" if player.paused else "Resumed"} the current song")
+            await interaction.response.send_message(f"{'Paused' if player.paused else 'Resumed'} the current song")
     
     @app_commands.command(description="Shows current queue")
     async def queue(self, interaction: discord.Interaction) -> None:
@@ -163,7 +163,7 @@ class Audio(commands.Cog):
             queue = [player.current] + list(player.queue)
             pages = []
             for i in range(0, len(queue), page_size):
-                text = '\n'.join([f"**{j if j != 0 else "🎵 Now playing:"}.** {queue[j].title} **{queue[j].author}**" for j in range(i, min(len(queue), i + page_size))])
+                text = '\n'.join([f"**{j if j != 0 else '🎶 Now playing:'}.** {queue[j].title} **{queue[j].author}**" for j in range(i, min(len(queue), i + page_size))])
                 pages.append(discord.Embed(title="Queue", description=text))
             await interaction.response.send_message(embed=pages[0], view=ButtonMenu(pages, 600))
 
